@@ -71,7 +71,7 @@ function push(target, value) {
         return target;
     } else {
         // Otherwise clone it and mark it as mutable:
-        return markAsMutable([...target, a]);
+        return markAsMutable([...target, value]);
     }
 }
 ```
