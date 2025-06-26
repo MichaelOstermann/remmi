@@ -2,7 +2,7 @@ import { tinybenchPrinter } from "@monstermann/tinybench-pretty-printer"
 import { produce as immer } from "immer"
 import { create as mutative } from "mutative"
 import { Bench } from "tinybench"
-import { cloneArray, withMutations } from "../packages/remmi/src/index.js"
+import { cloneArray, withMutations } from "../packages/remmi/src/index"
 
 function replace<T>(target: T[], value: T, replacement: T): T[] {
     if (value === replacement) return target
@@ -75,5 +75,5 @@ bench
 bench
     .run()
     .then(() => tinybenchPrinter.summary({ method: "x" }).toMarkdown(bench))
-    // eslint-disable-next-line no-console
+
     .then(console.log)

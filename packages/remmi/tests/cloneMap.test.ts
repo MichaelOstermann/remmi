@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { cloneMap, isMutable, markAsMutable, startMutations } from "../src/index.js"
+import { cloneMap, isMutable, markAsMutable, startMutations } from "../src/index"
 
 describe("cloneMap", () => {
     it("should clone inside mutation contexts when marked as mutable", () => {

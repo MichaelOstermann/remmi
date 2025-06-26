@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { isMutating, pauseMutations, startMutations } from "../src/index.js"
+import { isMutating, pauseMutations, startMutations } from "../src/index"
 
 describe("pauseMutations", () => {
     it("should return output", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { isImmutable, markAsMutable, startMutations } from "../src/index.js"
+import { isImmutable, markAsMutable, startMutations } from "../src/index"
 
 describe("isImmutable", () => {
     it("should return false for values marked as mutable", () => {

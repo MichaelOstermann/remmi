@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { cloneObject, isMutable, markAsMutable, startMutations } from "../src/index.js"
+import { cloneObject, isMutable, markAsMutable, startMutations } from "../src/index"
 
 describe("cloneObject", () => {
     it("should clone inside mutation contexts when marked as mutable", () => {

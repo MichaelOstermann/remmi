@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { isMutable, markAsImmutable, markAsMutable, startMutations } from "../src/index.js"
+import { isMutable, markAsImmutable, markAsMutable, startMutations } from "../src/index"
 
 describe("markAsImmutable", () => {
     it("should unmark within mutation contexts", () => {

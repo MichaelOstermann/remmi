@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { isMutable, isMutating, markAsMutable, startMutations } from "../src/index.js"
+import { isMutable, isMutating, markAsMutable, startMutations } from "../src/index"
 
 describe("startMutations", () => {
     it("should return output", () => {
