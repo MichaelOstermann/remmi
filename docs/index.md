@@ -1,6 +1,14 @@
 # remmi
 
-[![bundle][bundle-src]][bundle-href]
+<Badge type="info" class="size">
+    <span>Minified</span>
+    <span>561 B</span>
+</Badge>
+
+<Badge type="info" class="size">
+    <span>Minzipped</span>
+    <span>223 B</span>
+</Badge>
 
 **Reverse immer: Immutable by default, mutable when you need it.**
 
@@ -114,7 +122,7 @@ after; //=> [0, 1, 2]
 
 ## Benchmarks
 
-### `push(array, value)`
+### push(array, value)
 
 Test: Pushing values into an empty array _(Apple M1 Max, Node v24.0.1)_
 
@@ -127,7 +135,7 @@ Test: Pushing values into an empty array _(Apple M1 Max, Node v24.0.1)_
 | mutative                    | 161.3x slower |    155K |     7µs | ±0.85% |    148K |
 | immer                       | 277.7x slower |     90K |    12µs | ±6.48% |     86K |
 
-### `replace(array, value, replacement)`
+### replace(array, value, replacement)
 
 Test: Replacing elements in a populated array _(Apple M1 Max, Node v24.0.1)_
 
@@ -215,7 +223,9 @@ bun add @monstermann/remmi
 
 ## API
 
-### `startMutations(fn)`
+### startMutations
+
+`startMutations(fn)`
 
 Runs `fn` inside a new mutation context. Forwards the result of `fn`.
 
@@ -233,7 +243,9 @@ startMutations(() => {
 isMutable(target); //=> false
 ```
 
-### `pauseMutations(fn)`
+### pauseMutations
+
+`pauseMutations(fn)`
 
 Temporarily suspends the current mutation context for `fn`. Forwards the result of `fn`.
 
@@ -259,7 +271,9 @@ startMutations(() => {
 });
 ```
 
-### `withMutations(fn)`
+### withMutations
+
+`withMutations(fn)`
 
 Like `startMutations`, but reuses the current mutation context if available.
 
@@ -284,7 +298,9 @@ withMutations(() => {
 });
 ```
 
-### `isMutating()`
+### isMutating
+
+`isMutating()`
 
 Returns a boolean indicating whether a mutation context is currently available.
 
@@ -300,7 +316,9 @@ startMutations(() => {
 isMutating(); //=> false
 ```
 
-### `isMutable(value)`
+### isMutable
+
+`isMutable(value)`
 
 Returns a boolean indicating whether the provided value has been marked as mutable.
 
@@ -325,7 +343,9 @@ startMutations(() => {
 isMutable(value); //=> false
 ```
 
-### `isImmutable(value)`
+### isImmutable
+
+`isImmutable(value)`
 
 Returns a boolean indicating whether the provided value has not been marked as mutable.
 
@@ -350,7 +370,9 @@ startMutations(() => {
 isImmutable(value); //=> true
 ```
 
-### `markAsMutable(value)`
+### markAsMutable
+
+`markAsMutable(value)`
 
 Marks the provided value as mutable in the current mutation context.
 
@@ -369,7 +391,9 @@ startMutations(() => {
 });
 ```
 
-### `markAsImmutable(value)`
+### markAsImmutable
+
+`markAsImmutable(value)`
 
 Marks the provided value as immutable in the current mutation context.
 
@@ -391,7 +415,9 @@ startMutations(() => {
 });
 ```
 
-### `cloneObject(object)`
+### cloneObject
+
+`cloneObject(object)`
 
 Returns a mutable copy of `object` (or the original if already mutable).
 
@@ -419,7 +445,9 @@ startMutations(() => {
 });
 ```
 
-### `cloneArray(array)`
+### cloneArray
+
+`cloneArray(array)`
 
 Returns a mutable copy of `array` (or the original if already mutable).
 
@@ -447,7 +475,9 @@ startMutations(() => {
 });
 ```
 
-### `cloneMap(map)`
+### cloneMap
+
+`cloneMap(map)`
 
 Returns a mutable copy of `map` (or the original if already mutable).
 
@@ -475,7 +505,9 @@ startMutations(() => {
 });
 ```
 
-### `cloneSet(set)`
+### cloneSet
+
+`cloneSet(set)`
 
 Returns a mutable copy of `set` (or the original if already mutable).
 
@@ -502,6 +534,3 @@ startMutations(() => {
     b === c; //=> true
 });
 ```
-
-[bundle-src]: https://img.shields.io/bundlephobia/minzip/%40monstermann/remmi?style=flat&colorA=080f12&colorB=3451b2&label=minzip
-[bundle-href]: https://bundlephobia.com/result?p=%40monstermann/remmi
