@@ -15,6 +15,7 @@ export default defineConfig({
         },
     },
     themeConfig: {
+        aside: false,
         outline: "deep",
         docFooter: {
             next: false,
@@ -23,6 +24,25 @@ export default defineConfig({
         search: {
             provider: "local",
         },
+        sidebar: [
+            {
+                base: "/API/",
+                text: "API",
+                items: [
+                    { link: "startMutations", text: "startMutations" },
+                    { link: "pauseMutations", text: "pauseMutations" },
+                    { link: "withMutations", text: "withMutations" },
+                    { link: "isMutating", text: "isMutating" },
+                    { link: "isImmutable", text: "isImmutable" },
+                    { link: "markAsMutable", text: "markAsMutable" },
+                    { link: "markAsImmutable", text: "markAsImmutable" },
+                    { link: "cloneObject", text: "cloneObject" },
+                    { link: "cloneArray", text: "cloneArray" },
+                    { link: "cloneMap", text: "cloneMap" },
+                    { link: "cloneSet", text: "cloneSet" },
+                ],
+            },
+        ],
         socialLinks: [
             { icon: "github", link: "https://github.com/MichaelOstermann/remmi" },
         ],

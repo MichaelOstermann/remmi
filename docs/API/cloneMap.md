@@ -1,0 +1,29 @@
+# cloneMap
+
+`cloneMap(map)`
+
+Returns a mutable copy of `map` (or the original if already mutable).
+
+```ts
+import {
+    startMutations,
+    isMutable,
+    markAsMutable,
+    cloneMap,
+} from "@monstermann/remmi";
+
+const a = new Map();
+
+startMutations(() => {
+    isMutable(a); //=> false
+
+    const b = cloneMap(a);
+    isMutable(b); //=> true
+    a === b; //=> false
+
+    const c = cloneMap(b);
+    isMutable(c); //=> true
+    a === c; //=> false
+    b === c; //=> true
+});
+```
