@@ -14,7 +14,7 @@
         "@monstermann/tsconfig": "^0.0.0",
         "@monstermann/vitepress-theme": "^0.2.0",
         "bumpp": "^10.1.1",
-        "immer": "^10.1.1",
+        "immer": "^11.0.0",
         "mutative": "^1.2.0",
         "tinybench": "^4.0.1",
         "tsdown": "^0.17.0",
