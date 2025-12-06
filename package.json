@@ -10,7 +10,7 @@
     },
     "devDependencies": {
         "@monstermann/eslint-config": "^0.5.0",
-        "@monstermann/tinybench-pretty-printer": "^0.1.0",
+        "@monstermann/tinybench-pretty-printer": "^0.3.0",
         "@monstermann/tsconfig": "^0.0.0",
         "@monstermann/vitepress-theme": "^0.2.0",
         "bumpp": "^10.1.1",
