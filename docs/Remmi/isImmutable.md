@@ -1,8 +1,12 @@
 # isImmutable
 
-`isImmutable(value)`
+```ts
+function isImmutable(value: WeakKey): boolean;
+```
 
 Returns a boolean indicating whether the provided value has not been marked as mutable.
+
+## Example
 
 ```ts
 import {

@@ -1,27 +1,31 @@
-# cloneSet
+# cloneMap
 
-`cloneSet(set)`
+```ts
+function cloneMap(map: Map): Map;
+```
 
-Returns a mutable copy of `set` (or the original if already mutable).
+Returns a mutable copy of `map` (or the original if already mutable).
+
+## Example
 
 ```ts
 import {
     startMutations,
     isMutable,
     markAsMutable,
-    cloneSet,
+    cloneMap,
 } from "@monstermann/remmi";
 
-const a = new Set();
+const a = new Map();
 
 startMutations(() => {
     isMutable(a); //=> false
 
-    const b = cloneSet(a);
+    const b = cloneMap(a);
     isMutable(b); //=> true
     a === b; //=> false
 
-    const c = cloneSet(b);
+    const c = cloneMap(b);
     isMutable(c); //=> true
     a === c; //=> false
     b === c; //=> true

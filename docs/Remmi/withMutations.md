@@ -1,8 +1,12 @@
 # withMutations
 
-`withMutations(fn)`
+```ts
+function withMutations(fn: () => T): T;
+```
 
 Like `startMutations`, but reuses the current mutation context if available.
+
+## Example
 
 ```ts
 import {

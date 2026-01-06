@@ -1,8 +1,12 @@
 # markAsMutable
 
-`markAsMutable(value)`
+```ts
+function markAsMutable(value: WeakKey): WeakKey;
+```
 
 Marks the provided value as mutable in the current mutation context.
+
+## Example
 
 ```ts
 import {

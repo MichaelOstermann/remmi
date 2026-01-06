@@ -1,8 +1,12 @@
 # startMutations
 
-`startMutations(fn)`
+```ts
+function startMutations(fn: () => T): T;
+```
 
 Runs `fn` inside a new mutation context. Forwards the result of `fn`.
+
+## Example
 
 ```ts
 import { startMutations, markAsMutable, isMutable } from "@monstermann/remmi";

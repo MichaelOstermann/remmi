@@ -1,8 +1,12 @@
 # pauseMutations
 
-`pauseMutations(fn)`
+```ts
+function pauseMutations(fn: () => T): T;
+```
 
 Temporarily suspends the current mutation context for `fn`. Forwards the result of `fn`.
+
+## Example
 
 ```ts
 import {

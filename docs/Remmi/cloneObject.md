@@ -1,27 +1,31 @@
-# cloneMap
+# cloneObject
 
-`cloneMap(map)`
+```ts
+function cloneObject(object: object): object;
+```
 
-Returns a mutable copy of `map` (or the original if already mutable).
+Returns a mutable copy of `object` (or the original if already mutable).
+
+## Example
 
 ```ts
 import {
     startMutations,
     isMutable,
     markAsMutable,
-    cloneMap,
+    cloneObject,
 } from "@monstermann/remmi";
 
-const a = new Map();
+const a = {};
 
 startMutations(() => {
     isMutable(a); //=> false
 
-    const b = cloneMap(a);
+    const b = cloneObject(a);
     isMutable(b); //=> true
     a === b; //=> false
 
-    const c = cloneMap(b);
+    const c = cloneObject(b);
     isMutable(c); //=> true
     a === c; //=> false
     b === c; //=> true

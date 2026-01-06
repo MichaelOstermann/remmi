@@ -26,8 +26,8 @@ export default defineConfig({
         },
         sidebar: [
             {
-                base: "/API/",
-                text: "API",
+                base: "/Remmi/",
+                text: "Remmi",
                 items: [
                     { link: "startMutations", text: "startMutations" },
                     { link: "pauseMutations", text: "pauseMutations" },

@@ -1,27 +1,31 @@
-# cloneArray
+# cloneSet
 
-`cloneArray(array)`
+```ts
+function cloneSet(set: ReadonlySet): Set;
+```
 
-Returns a mutable copy of `array` (or the original if already mutable).
+Returns a mutable copy of `set` (or the original if already mutable).
+
+## Example
 
 ```ts
 import {
     startMutations,
     isMutable,
     markAsMutable,
-    cloneArray,
+    cloneSet,
 } from "@monstermann/remmi";
 
-const a = [];
+const a = new Set();
 
 startMutations(() => {
     isMutable(a); //=> false
 
-    const b = cloneArray(a);
+    const b = cloneSet(a);
     isMutable(b); //=> true
     a === b; //=> false
 
-    const c = cloneArray(b);
+    const c = cloneSet(b);
     isMutable(c); //=> true
     a === c; //=> false
     b === c; //=> true

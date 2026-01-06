@@ -1,27 +1,31 @@
-# cloneObject
+# cloneArray
 
-`cloneObject(object)`
+```ts
+function cloneArray(array: ReadonlyArray): Array;
+```
 
-Returns a mutable copy of `object` (or the original if already mutable).
+Returns a mutable copy of `array` (or the original if already mutable).
+
+## Example
 
 ```ts
 import {
     startMutations,
     isMutable,
     markAsMutable,
-    cloneObject,
+    cloneArray,
 } from "@monstermann/remmi";
 
-const a = {};
+const a = [];
 
 startMutations(() => {
     isMutable(a); //=> false
 
-    const b = cloneObject(a);
+    const b = cloneArray(a);
     isMutable(b); //=> true
     a === b; //=> false
 
-    const c = cloneObject(b);
+    const c = cloneArray(b);
     isMutable(c); //=> true
     a === c; //=> false
     b === c; //=> true
