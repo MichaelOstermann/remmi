@@ -1,7 +1,7 @@
 {
     "name": "@monstermann/remmi",
     "type": "module",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Reverse immer.",
     "author": "Michael Ostermann <michaelostermann@me.com>",
     "license": "MIT",
