@@ -4,7 +4,7 @@
 function withMutations(fn: () => T): T;
 ```
 
-Like `startMutations`, but reuses the current mutation context if available.
+Runs `fn` inside a mutation context, reusing the current one if already active. Forwards the result of `fn`.
 
 ## Example
 
@@ -12,7 +12,7 @@ Like `startMutations`, but reuses the current mutation context if available.
 import {
     withMutations,
     markAsMutable,
-    unmarkAsMutable,
+    markAsImmutable,
     isMutable,
 } from "@monstermann/remmi";
 
@@ -22,7 +22,7 @@ withMutations(() => {
 
     withMutations(() => {
         isMutable(target); //=> true
-        unmarkAsMutable(target);
+        markAsImmutable(target);
     });
 
     isMutable(target); //=> false

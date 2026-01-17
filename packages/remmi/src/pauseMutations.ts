@@ -13,13 +13,13 @@ import { ctx } from "./ctx"
  *
  * ```ts
  * import {
- *     startMutations,
+ *     withMutations,
  *     pauseMutations,
  *     markAsMutable,
  *     isMutable,
  * } from "@monstermann/remmi";
  *
- * startMutations(() => {
+ * withMutations(() => {
  *     markAsMutable(target);
  *     isMutable(target); //=> true
  *
@@ -36,10 +36,12 @@ import { ctx } from "./ctx"
  */
 export function pauseMutations<T>(fn: () => T): T {
     try {
-        ctx.set(undefined)
+        ctx.stack.push(undefined)
+        ctx.current = undefined
         return fn()
     }
     finally {
-        ctx.pop()
+        ctx.stack.pop()
+        ctx.current = ctx.stack.at(-1)
     }
 }

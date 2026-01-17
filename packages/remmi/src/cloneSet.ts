@@ -14,7 +14,7 @@ import { markAsMutable } from "./markAsMutable"
  *
  * ```ts
  * import {
- *     startMutations,
+ *     withMutations,
  *     isMutable,
  *     markAsMutable,
  *     cloneSet,
@@ -22,7 +22,7 @@ import { markAsMutable } from "./markAsMutable"
  *
  * const a = new Set();
  *
- * startMutations(() => {
+ * withMutations(() => {
  *     isMutable(a); //=> false
  *
  *     const b = cloneSet(a);

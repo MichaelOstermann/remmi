@@ -2,7 +2,7 @@
 
 <h1>remmi</h1>
 
-![Minified](https://img.shields.io/badge/Minified-652_B-blue?style=flat-square&labelColor=%2315161D&color=%2369a1ff) ![Minzipped](https://img.shields.io/badge/Minzipped-253_B-blue?style=flat-square&labelColor=%2315161D&color=%2369a1ff)
+![copy](https://img.shields.io/badge/copy-blue?style=flat-square&color=%2369a1ff) ![write](https://img.shields.io/badge/write-blue?style=flat-square&color=%2369a1ff) ![copy](https://img.shields.io/badge/copy-blue?style=flat-square&color=%2369a1ff) ![write](https://img.shields.io/badge/write-blue?style=flat-square&color=%2369a1ff) ![copy](https://img.shields.io/badge/copy-blue?style=flat-square&color=%2369a1ff) ![write](https://img.shields.io/badge/write-blue?style=flat-square&color=%2369a1ff) ![Minified](https://img.shields.io/badge/Minified-685_B-blue?style=flat-square&labelColor=%2315161D&color=%2369a1ff) ![Minzipped](https://img.shields.io/badge/Minzipped-254_B-blue?style=flat-square&labelColor=%2315161D&color=%2369a1ff)
 
 **Reverse immer.**
 
@@ -30,12 +30,15 @@ d; //=> [0, 1, 2]
 
 But this copies the array every time, sometimes you might want to have something like this instead:
 
+![copy](https://img.shields.io/badge/copy-blue?style=flat-square&color=%2369a1ff)
+![write](https://img.shields.io/badge/write-blue?style=flat-square&color=%2369a1ff)
+
 ```ts
 const before = [];
 
-const after = [...before, 0]; // copy
-after.push(1); // write
-after.push(2); // write
+const after = [...before, 0]; // [!code error]
+after.push(1); // [!code warning]
+after.push(2); // [!code warning]
 
 before; //=> []
 after; //=> [0, 1, 2]
@@ -43,9 +46,7 @@ after; //=> [0, 1, 2]
 
 This is what `remmi` allows you to do!
 
-v1:
-
-```ts
+```ts [v1]
 import { cloneArray } from "@monstermann/remmi";
 
 function push(target, value) {
@@ -60,9 +61,7 @@ function push(target, value) {
 }
 ```
 
-v2:
-
-```ts
+```ts [v2]
 import { isMutable, markAsMutable } from "@monstermann/remmi";
 
 function push(target, value) {
@@ -79,24 +78,27 @@ function push(target, value) {
 
 And now let's use it:
 
-```ts
+![copy](https://img.shields.io/badge/copy-blue?style=flat-square&color=%2369a1ff)
+![write](https://img.shields.io/badge/write-blue?style=flat-square&color=%2369a1ff)
+
+```ts [copy]
 const a = [];
-const b = push(a, 0); // copy
-const c = push(b, 1); // copy
-const d = push(c, 2); // copy
+const b = push(a, 0); // [!code error]
+const c = push(b, 1); // [!code error]
+const d = push(c, 2); // [!code error]
 
 a; //=> []
 d; //=> [0, 1, 2]
 ```
 
-```ts
+```ts [copy-on-write]
 const before = [];
 
 const after = withMutations(() => {
     const a = before;
-    const b = push(a, 0); // copy
-    const c = push(b, 1); // write
-    const d = push(c, 2); // write
+    const b = push(a, 0); // [!code error]
+    const c = push(b, 1); // [!code warning]
+    const d = push(c, 2); // [!code warning]
     return d;
 });
 
@@ -157,6 +159,9 @@ function isMutable<T extends WeakKey>(value: T): boolean {
 }
 ```
 
+![copy](https://img.shields.io/badge/copy-blue?style=flat-square&color=%2369a1ff)
+![write](https://img.shields.io/badge/write-blue?style=flat-square&color=%2369a1ff)
+
 ```ts [Usage]
 function push<T>(target: T[], value: T): T[] {
     target = isMutable(target) ? target : markAsMutable([...target]);
@@ -165,18 +170,18 @@ function push<T>(target: T[], value: T): T[] {
 }
 
 const a1 = [];
-const a2 = push(a1, 0); // copy
-const a3 = push(a2, 1); // copy
+const a2 = push(a1, 0); // [!code error]
+const a3 = push(a2, 1); // [!code error]
 
 startContext();
 
-const a4 = push(a3, 2); // copy
-const a5 = push(a4, 2); // write
-const a6 = push(a5, 2); // write
+const a4 = push(a3, 2); // [!code error]
+const a5 = push(a4, 2); // [!code warning]
+const a6 = push(a5, 2); // [!code warning]
 
 endContext();
 
-const a7 = push(a6, 2); // copy
+const a7 = push(a6, 2); // [!code error]
 const a8 = push(a7, 2); // [!code error]
 ```
 
@@ -212,7 +217,7 @@ Returns a mutable copy of `array` (or the original if already mutable).
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     isMutable,
     markAsMutable,
     cloneArray,
@@ -220,7 +225,7 @@ import {
 
 const a = [];
 
-startMutations(() => {
+withMutations(() => {
     isMutable(a); //=> false
 
     const b = cloneArray(a);
@@ -246,7 +251,7 @@ Returns a mutable copy of `map` (or the original if already mutable).
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     isMutable,
     markAsMutable,
     cloneMap,
@@ -254,7 +259,7 @@ import {
 
 const a = new Map();
 
-startMutations(() => {
+withMutations(() => {
     isMutable(a); //=> false
 
     const b = cloneMap(a);
@@ -280,7 +285,7 @@ Returns a mutable copy of `object` (or the original if already mutable).
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     isMutable,
     markAsMutable,
     cloneObject,
@@ -288,7 +293,7 @@ import {
 
 const a = {};
 
-startMutations(() => {
+withMutations(() => {
     isMutable(a); //=> false
 
     const b = cloneObject(a);
@@ -314,7 +319,7 @@ Returns a mutable copy of `set` (or the original if already mutable).
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     isMutable,
     markAsMutable,
     cloneSet,
@@ -322,7 +327,7 @@ import {
 
 const a = new Set();
 
-startMutations(() => {
+withMutations(() => {
     isMutable(a); //=> false
 
     const b = cloneSet(a);
@@ -334,6 +339,40 @@ startMutations(() => {
     a === c; //=> false
     b === c; //=> true
 });
+```
+
+### endMutations
+
+```ts
+function endMutations(): void;
+```
+
+Ends the current mutation context. Must be paired with `startMutations`.
+
+#### Example
+
+```ts
+import {
+    startMutations,
+    endMutations,
+    markAsMutable,
+    isMutable,
+    isMutating,
+} from "@monstermann/remmi";
+
+startMutations();
+markAsMutable(target);
+isMutable(target); //=> true
+
+startMutations();
+isMutable(target); //=> true
+endMutations();
+
+isMutable(target); //=> true
+endMutations();
+
+isMutating(); //=> false
+isMutable(target); //=> false
 ```
 
 ### isImmutable
@@ -348,19 +387,19 @@ Returns a boolean indicating whether the provided value has not been marked as m
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     isImmutable,
     markAsMutable,
-    unmarkAsMutable,
+    markAsImmutable,
 } from "@monstermann/remmi";
 
 isImmutable(value); //=> true
 
-startMutations(() => {
+withMutations(() => {
     isImmutable(value); //=> true
     markAsMutable(value);
     isImmutable(value); //=> false
-    unmarkAsMutable(value);
+    markAsImmutable(value);
     isImmutable(value); //=> true
 });
 
@@ -379,19 +418,19 @@ Returns a boolean indicating whether the provided value has been marked as mutab
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     isMutable,
     markAsMutable,
-    unmarkAsMutable,
+    markAsImmutable,
 } from "@monstermann/remmi";
 
 isMutable(value); //=> false
 
-startMutations(() => {
+withMutations(() => {
     isMutable(value); //=> false
     markAsMutable(value);
     isMutable(value); //=> true
-    unmarkAsMutable(value);
+    markAsImmutable(value);
     isMutable(value); //=> false
 });
 
@@ -409,11 +448,11 @@ Returns a boolean indicating whether a mutation context is currently available.
 #### Example
 
 ```ts
-import { startMutations, isMutating } from "@monstermann/remmi";
+import { withMutations, isMutating } from "@monstermann/remmi";
 
 isMutating(); //=> false
 
-startMutations(() => {
+withMutations(() => {
     isMutating(); //=> true
 });
 
@@ -432,14 +471,14 @@ Marks the provided value as immutable in the current mutation context.
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     isMutable,
     markAsMutable,
     markAsImmutable,
-    unmarkAsMutable,
+    markAsImmutable,
 } from "@monstermann/remmi";
 
-startMutations(() => {
+withMutations(() => {
     isMutable(value); //=> false
     markAsMutable(value);
     isMutable(value); //=> true
@@ -460,13 +499,13 @@ Marks the provided value as mutable in the current mutation context.
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     isMutable,
     markAsMutable,
-    unmarkAsMutable,
+    markAsImmutable,
 } from "@monstermann/remmi";
 
-startMutations(() => {
+withMutations(() => {
     isMutable(value); //=> false
     markAsMutable(value);
     isMutable(value); //=> true
@@ -485,13 +524,13 @@ Temporarily suspends the current mutation context for `fn`. Forwards the result 
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     pauseMutations,
     markAsMutable,
     isMutable,
 } from "@monstermann/remmi";
 
-startMutations(() => {
+withMutations(() => {
     markAsMutable(target);
     isMutable(target); //=> true
 
@@ -508,24 +547,31 @@ startMutations(() => {
 ### startMutations
 
 ```ts
-function startMutations(fn: () => T): T;
+function startMutations(): void;
 ```
 
-Runs `fn` inside a new mutation context. Forwards the result of `fn`.
+Starts a mutation context, reusing the current one if already active. Must be paired with `endMutations`.
 
 #### Example
 
 ```ts
-import { startMutations, markAsMutable, isMutable } from "@monstermann/remmi";
+import {
+    startMutations,
+    endMutations,
+    markAsMutable,
+    isMutable,
+    isMutating,
+} from "@monstermann/remmi";
 
-isMutable(target); //=> false
+isMutating(); //=> false
 
-startMutations(() => {
-    markAsMutable(target);
-    isMutable(target); //=> true
-    return true;
-}); //=> true
+startMutations();
+isMutating(); //=> true
+markAsMutable(target);
+isMutable(target); //=> true
+endMutations();
 
+isMutating(); //=> false
 isMutable(target); //=> false
 ```
 
@@ -535,7 +581,7 @@ isMutable(target); //=> false
 function withMutations(fn: () => T): T;
 ```
 
-Like `startMutations`, but reuses the current mutation context if available.
+Runs `fn` inside a mutation context, reusing the current one if already active. Forwards the result of `fn`.
 
 #### Example
 
@@ -543,7 +589,7 @@ Like `startMutations`, but reuses the current mutation context if available.
 import {
     withMutations,
     markAsMutable,
-    unmarkAsMutable,
+    markAsImmutable,
     isMutable,
 } from "@monstermann/remmi";
 
@@ -553,7 +599,7 @@ withMutations(() => {
 
     withMutations(() => {
         isMutable(target); //=> true
-        unmarkAsMutable(target);
+        markAsImmutable(target);
     });
 
     isMutable(target); //=> false

@@ -16,7 +16,7 @@ type WritableArray<T> = T extends readonly [...infer U] ? U : T
  *
  * ```ts
  * import {
- *     startMutations,
+ *     withMutations,
  *     isMutable,
  *     markAsMutable,
  *     cloneArray,
@@ -24,7 +24,7 @@ type WritableArray<T> = T extends readonly [...infer U] ? U : T
  *
  * const a = [];
  *
- * startMutations(() => {
+ * withMutations(() => {
  *     isMutable(a); //=> false
  *
  *     const b = cloneArray(a);

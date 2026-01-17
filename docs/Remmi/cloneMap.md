@@ -10,7 +10,7 @@ Returns a mutable copy of `map` (or the original if already mutable).
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     isMutable,
     markAsMutable,
     cloneMap,
@@ -18,7 +18,7 @@ import {
 
 const a = new Map();
 
-startMutations(() => {
+withMutations(() => {
     isMutable(a); //=> false
 
     const b = cloneMap(a);

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { isMutating, pauseMutations, startMutations } from "../src/index"
+import { isMutating, pauseMutations, withMutations } from "../src/index"
 
 describe("pauseMutations", () => {
     it("should return output", () => {
@@ -8,7 +8,7 @@ describe("pauseMutations", () => {
 
     it("should pause current mutation context and then resume", () => {
         expect.assertions(3)
-        startMutations(() => {
+        withMutations(() => {
             expect(isMutating()).toBe(true)
             pauseMutations(() => {
                 expect(isMutating()).toBe(false)

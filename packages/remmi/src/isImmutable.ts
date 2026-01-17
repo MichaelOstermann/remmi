@@ -13,19 +13,19 @@ import { isMutable } from "./isMutable"
  *
  * ```ts
  * import {
- *     startMutations,
+ *     withMutations,
  *     isImmutable,
  *     markAsMutable,
- *     unmarkAsMutable,
+ *     markAsImmutable,
  * } from "@monstermann/remmi";
  *
  * isImmutable(value); //=> true
  *
- * startMutations(() => {
+ * withMutations(() => {
  *     isImmutable(value); //=> true
  *     markAsMutable(value);
  *     isImmutable(value); //=> false
- *     unmarkAsMutable(value);
+ *     markAsImmutable(value);
  *     isImmutable(value); //=> true
  * });
  *

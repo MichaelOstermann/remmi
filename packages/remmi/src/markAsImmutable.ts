@@ -13,14 +13,14 @@ import { ctx } from "./ctx"
  *
  * ```ts
  * import {
- *     startMutations,
+ *     withMutations,
  *     isMutable,
  *     markAsMutable,
  *     markAsImmutable,
- *     unmarkAsMutable,
+ *     markAsImmutable,
  * } from "@monstermann/remmi";
  *
- * startMutations(() => {
+ * withMutations(() => {
  *     isMutable(value); //=> false
  *     markAsMutable(value);
  *     isMutable(value); //=> true

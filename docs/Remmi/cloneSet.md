@@ -10,7 +10,7 @@ Returns a mutable copy of `set` (or the original if already mutable).
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     isMutable,
     markAsMutable,
     cloneSet,
@@ -18,7 +18,7 @@ import {
 
 const a = new Set();
 
-startMutations(() => {
+withMutations(() => {
     isMutable(a); //=> false
 
     const b = cloneSet(a);

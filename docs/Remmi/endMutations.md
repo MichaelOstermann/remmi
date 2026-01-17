@@ -1,10 +1,10 @@
-# startMutations
+# endMutations
 
 ```ts
-function startMutations(): void;
+function endMutations(): void;
 ```
 
-Starts a mutation context, reusing the current one if already active. Must be paired with `endMutations`.
+Ends the current mutation context. Must be paired with `startMutations`.
 
 ## Example
 
@@ -17,11 +17,14 @@ import {
     isMutating,
 } from "@monstermann/remmi";
 
-isMutating(); //=> false
+startMutations();
+markAsMutable(target);
+isMutable(target); //=> true
 
 startMutations();
-isMutating(); //=> true
-markAsMutable(target);
+isMutable(target); //=> true
+endMutations();
+
 isMutable(target); //=> true
 endMutations();
 

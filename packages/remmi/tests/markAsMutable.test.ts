@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest"
-import { isMutable, markAsMutable, startMutations } from "../src/index"
+import { isMutable, markAsMutable, withMutations } from "../src/index"
 
 describe("markAsMutable", () => {
     it("should mark within mutation contexts", () => {
         expect.hasAssertions()
-        startMutations(() => {
+        withMutations(() => {
             const value = [0]
             expect(markAsMutable(value)).toBe(value)
             expect(isMutable(value)).toBe(true)

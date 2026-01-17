@@ -30,6 +30,7 @@ export default defineConfig({
                 text: "Remmi",
                 items: [
                     { link: "startMutations", text: "startMutations" },
+                    { link: "endMutations", text: "endMutations" },
                     { link: "pauseMutations", text: "pauseMutations" },
                     { link: "withMutations", text: "withMutations" },
                     { link: "isMutating", text: "isMutating" },

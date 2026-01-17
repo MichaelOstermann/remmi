@@ -1,13 +1,13 @@
 import { ctx } from "./ctx"
 
 /**
- * # startMutations
+ * # endMutations
  *
  * ```ts
- * function startMutations(): void;
+ * function endMutations(): void;
  * ```
  *
- * Starts a mutation context, reusing the current one if already active. Must be paired with `endMutations`.
+ * Ends the current mutation context. Must be paired with `startMutations`.
  *
  * ## Example
  *
@@ -20,11 +20,14 @@ import { ctx } from "./ctx"
  *     isMutating,
  * } from "@monstermann/remmi";
  *
- * isMutating(); //=> false
+ * startMutations();
+ * markAsMutable(target);
+ * isMutable(target); //=> true
  *
  * startMutations();
- * isMutating(); //=> true
- * markAsMutable(target);
+ * isMutable(target); //=> true
+ * endMutations();
+ *
  * isMutable(target); //=> true
  * endMutations();
  *
@@ -33,7 +36,7 @@ import { ctx } from "./ctx"
  * ```
  *
  */
-export function startMutations(): void {
-    ctx.current ??= new WeakSet()
-    ctx.stack.push(ctx.current)
+export function endMutations(): void {
+    ctx.stack.pop()
+    ctx.current = ctx.stack.at(-1)
 }

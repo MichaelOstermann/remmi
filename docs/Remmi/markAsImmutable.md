@@ -10,14 +10,13 @@ Marks the provided value as immutable in the current mutation context.
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     isMutable,
     markAsMutable,
     markAsImmutable,
-    unmarkAsMutable,
 } from "@monstermann/remmi";
 
-startMutations(() => {
+withMutations(() => {
     isMutable(value); //=> false
     markAsMutable(value);
     isMutable(value); //=> true

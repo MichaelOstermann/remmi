@@ -10,13 +10,13 @@ Temporarily suspends the current mutation context for `fn`. Forwards the result 
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     pauseMutations,
     markAsMutable,
     isMutable,
 } from "@monstermann/remmi";
 
-startMutations(() => {
+withMutations(() => {
     markAsMutable(target);
     isMutable(target); //=> true
 

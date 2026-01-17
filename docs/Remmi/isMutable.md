@@ -10,19 +10,19 @@ Returns a boolean indicating whether the provided value has been marked as mutab
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     isMutable,
     markAsMutable,
-    unmarkAsMutable,
+    markAsImmutable,
 } from "@monstermann/remmi";
 
 isMutable(value); //=> false
 
-startMutations(() => {
+withMutations(() => {
     isMutable(value); //=> false
     markAsMutable(value);
     isMutable(value); //=> true
-    unmarkAsMutable(value);
+    markAsImmutable(value);
     isMutable(value); //=> false
 });
 

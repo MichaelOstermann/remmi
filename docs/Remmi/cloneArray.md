@@ -10,7 +10,7 @@ Returns a mutable copy of `array` (or the original if already mutable).
 
 ```ts
 import {
-    startMutations,
+    withMutations,
     isMutable,
     markAsMutable,
     cloneArray,
@@ -18,7 +18,7 @@ import {
 
 const a = [];
 
-startMutations(() => {
+withMutations(() => {
     isMutable(a); //=> false
 
     const b = cloneArray(a);

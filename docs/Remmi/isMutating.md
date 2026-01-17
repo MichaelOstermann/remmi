@@ -9,11 +9,11 @@ Returns a boolean indicating whether a mutation context is currently available.
 ## Example
 
 ```ts
-import { startMutations, isMutating } from "@monstermann/remmi";
+import { withMutations, isMutating } from "@monstermann/remmi";
 
 isMutating(); //=> false
 
-startMutations(() => {
+withMutations(() => {
     isMutating(); //=> true
 });
 

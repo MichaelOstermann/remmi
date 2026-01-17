@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest"
-import { cloneSet, isMutable, markAsMutable, startMutations } from "../src/index"
+import { cloneSet, isMutable, markAsMutable, withMutations } from "../src/index"
 
 describe("cloneSet", () => {
     it("should clone inside mutation contexts when marked as mutable", () => {
         expect.hasAssertions()
-        startMutations(() => {
+        withMutations(() => {
             const before = new Set([0])
             const after = cloneSet(before)
             expect(before).not.toBe(after)
@@ -14,7 +14,7 @@ describe("cloneSet", () => {
 
     it("should mark set as mutable", () => {
         expect.hasAssertions()
-        startMutations(() => {
+        withMutations(() => {
             const before = new Set([0])
             const after = cloneSet(before)
             expect(isMutable(after)).toBe(true)
@@ -23,7 +23,7 @@ describe("cloneSet", () => {
 
     it("should not clone inside mutation contexts when marked as mutable", () => {
         expect.hasAssertions()
-        startMutations(() => {
+        withMutations(() => {
             const before = new Set([0])
             markAsMutable(before)
             const after = cloneSet(before)

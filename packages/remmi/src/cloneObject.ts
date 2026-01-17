@@ -16,7 +16,7 @@ type WritableObject<T> = { -readonly [P in keyof T]: T[P] }
  *
  * ```ts
  * import {
- *     startMutations,
+ *     withMutations,
  *     isMutable,
  *     markAsMutable,
  *     cloneObject,
@@ -24,7 +24,7 @@ type WritableObject<T> = { -readonly [P in keyof T]: T[P] }
  *
  * const a = {};
  *
- * startMutations(() => {
+ * withMutations(() => {
  *     isMutable(a); //=> false
  *
  *     const b = cloneObject(a);

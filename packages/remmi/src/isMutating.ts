@@ -12,11 +12,11 @@ import { ctx } from "./ctx"
  * ## Example
  *
  * ```ts
- * import { startMutations, isMutating } from "@monstermann/remmi";
+ * import { withMutations, isMutating } from "@monstermann/remmi";
  *
  * isMutating(); //=> false
  *
- * startMutations(() => {
+ * withMutations(() => {
  *     isMutating(); //=> true
  * });
  *

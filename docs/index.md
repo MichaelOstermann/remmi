@@ -6,12 +6,12 @@ aside: true
 
 <Badge type="info" class="size">
     <span>Minified</span>
-    <span>652 B</span>
+    <span>685 B</span>
 </Badge>
 
 <Badge type="info" class="size">
     <span>Minzipped</span>
-    <span>253 B</span>
+    <span>254 B</span>
 </Badge>
 
 **Reverse immer: Immutable by default, mutable when you need it.**
