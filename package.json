@@ -13,7 +13,7 @@
         "@monstermann/tinybench-pretty-printer": "^0.3.0",
         "@monstermann/tsconfig": "^0.0.0",
         "@monstermann/vitepress-theme": "^0.2.0",
-        "bumpp": "^10.1.1",
+        "bumpp": "^11.0.0",
         "immer": "^11.0.0",
         "mutative": "^1.2.0",
         "tinybench": "^6.0.0",
